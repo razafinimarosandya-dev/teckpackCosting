@@ -9,802 +9,803 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-:root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --bg-color: #f7f9fb;
-  --surface-color: #ffffff;
-  --text-main: #1f2937;
-  --text-muted: #6b7280;
-  --border-color: #e5e7eb;
+  :root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-color: #f7f9fb;
+    --surface-color: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
 
-  --status-pending-bg: #fef3c7;
-  --status-pending-text: #b45309;
-  --status-completed-bg: #d1fae5;
-  --status-completed-text: #047857;
-  --status-inprogress-bg: #dbeafe;
-  --status-inprogress-text: #1d4ed8;
-  --status-draft-bg: #f3f4f6;
-  --status-draft-text: #374151;
+    --status-pending-bg: #fef3c7;
+    --status-pending-text: #b45309;
+    --status-completed-bg: #d1fae5;
+    --status-completed-text: #047857;
+    --status-inprogress-bg: #dbeafe;
+    --status-inprogress-text: #1d4ed8;
+    --status-draft-bg: #f3f4f6;
+    --status-draft-text: #374151;
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
 
-  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Typography styles */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: var(--transition);
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  transition: var(--transition);
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  font-family: 'Inter', sans-serif;
-  color: var(--text-main);
-  outline: none;
-  transition: var(--transition);
-}
-
-.input-field:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* Layout container */
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 32px;
-  background-color: var(--surface-color);
-  border-bottom: 1px solid var(--border-color);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: var(--shadow-sm);
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.brand-icon {
-  width: 28px;
-  height: 28px;
-  background-color: var(--primary-color);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  background-color: #f3f4f6;
-  border-radius: var(--radius-md);
-  padding: 8px 16px;
-  width: 240px;
-  gap: 8px;
-  color: var(--text-muted);
-}
-
-.search-bar input {
-  border: none;
-  background: transparent;
-  width: 100%;
-  font-size: 14px;
-  outline: none;
-  color: var(--text-main);
-}
-
-.search-bar input::placeholder {
-  color: var(--text-muted);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-muted);
-}
-
-.nav-links a.active {
-  color: var(--primary-color);
-  position: relative;
-}
-
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -18px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-color);
-  border-radius: 2px 2px 0 0;
-}
-
-.nav-links a:hover:not(.active) {
-  color: var(--text-main);
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.icon-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  background-color: transparent;
-  transition: var(--transition);
-}
-
-.icon-btn:hover {
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  transform: scale(1.05);
-}
-
-.avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid white;
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.avatar:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-md);
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  padding: 32px;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
-  animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-}
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 24px;
-}
-
-.page-title {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.page-title .subtitle {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.page-title h1 {
-  font-size: 28px;
-  letter-spacing: -0.02em;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%);
-  color: white;
-  padding: 10px 20px;
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-  transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-color) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
-}
-
-.btn-primary:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
-}
-
-/* Split Layout */
-.grid-layout {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
-/* Cards */
-.card {
-  background-color: var(--surface-color);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  padding: 24px;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.card-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Request Banner */
-.request-banner {
-  background-color: var(--bg-color);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.request-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.request-info-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.request-info-top .badge {
-  background-color: #dbeafe;
-  color: #1e40af;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 4px;
-  letter-spacing: 0.05em;
-}
-
-.request-info-top h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.request-info-meta {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.request-info-meta span {
-  font-weight: 500;
-  color: var(--text-main);
-}
-
-.btn-secondary {
-  color: var(--primary-color);
-  font-size: 12px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px solid #bfdbfe;
-  background-color: #eff6ff;
-  border-radius: 6px;
-}
-
-.btn-secondary:hover {
-  background-color: #dbeafe;
-}
-
-/* Tab Toggle */
-.tabs {
-  display: flex;
-  background-color: #f3f4f6;
-  border-radius: var(--radius-md);
-  padding: 4px;
-  margin-bottom: 24px;
-}
-
-.tab {
-  flex: 1;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-muted);
-  border-radius: 6px;
-  transition: var(--transition);
-}
-
-.tab.active {
-  background-color: var(--surface-color);
-  color: var(--text-main);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.tab:hover:not(.active) {
-  color: var(--text-main);
-  background-color: #e5e7eb;
-}
-
-/* Drag and Drop Area */
-.dropzone {
-  border: 2px dashed #cbd5e1;
-  border-radius: var(--radius-lg);
-  padding: 48px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: #f8fafc;
-  transition: var(--transition);
-  cursor: pointer;
-  margin-bottom: 24px;
-}
-
-.dropzone:hover {
-  border-color: var(--primary-color);
-  background-color: #eff6ff;
-}
-
-.dropzone-icon {
-  width: 48px;
-  height: 48px;
-  background-color: #dbeafe;
-  color: var(--primary-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  font-size: 24px;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
-}
-
-.dropzone h4 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.dropzone p {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-}
-
-.btn-outline {
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color);
-  background-color: transparent;
-  padding: 8px 16px;
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.btn-outline:hover {
-  background-color: #eff6ff;
-}
-
-/* Input Row */
-.input-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.input-group label {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--text-main);
-}
-
-/* Planning Calendar Details */
-.calendar-card {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.calendar-card .card-title {
-  margin-bottom: 0;
-}
-
-.fieldset {
-  margin-bottom: 16px;
-}
-
-.fieldset label {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  letter-spacing: 0.05em;
-}
-
-.date-picker {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  color: var(--text-main);
-  background: var(--bg-color);
-}
-
-.calendar-grid {
-  width: 100%;
-}
-
-.calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-}
-
-.calendar-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-
-.cal-day {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  border-radius: 50%;
-  cursor: pointer;
-  color: var(--text-main);
-  transition: var(--transition);
-}
-
-.cal-day:hover:not(.empty) {
-  background-color: #f3f4f6;
-}
-
-.cal-day.empty {
-  cursor: default;
-}
-
-.cal-day.muted {
-  color: #d1d5db;
-}
-
-.cal-day.active {
-  background-color: var(--primary-color);
-  color: white;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-}
-
-.cal-day.highlight {
-  background-color: #eff6ff;
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.legend {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-.legend-color {
-  width: 8px;
-  height: 8px;
-  border-radius: 2px;
-}
-
-.legend-color.blue {
-  background-color: var(--primary-color);
-}
-
-.legend-color.light-blue {
-  background-color: #bfdbfe;
-}
-
-/* Table Section */
-.table-section {
-  background-color: var(--surface-color);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  padding: 24px;
-  box-shadow: var(--shadow-sm);
-}
-
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.table-header h2 {
-  font-size: 18px;
-}
-
-.btn-ghost {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-}
-
-.btn-ghost:hover {
-  background-color: #f3f4f6;
-  color: var(--text-main);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th {
-  text-align: left;
-  padding: 12px 16px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-color);
-}
-
-td {
-  padding: 16px;
-  font-size: 14px;
-  border-bottom: 1px solid var(--border-color);
-  vertical-align: middle;
-}
-
-tbody tr {
-  transition: var(--transition);
-}
-
-tbody tr:hover {
-  background-color: #f9fafb;
-}
-
-.req-id {
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.style-name {
-  font-weight: 500;
-}
-
-.customer-name {
-  color: var(--text-muted);
-}
-
-.assignee {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.assignee-avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.status-badge {
-  display: inline-flex;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.status-badge.pending {
-  background-color: var(--status-pending-bg);
-  color: var(--status-pending-text);
-}
-
-.status-badge.completed {
-  background-color: var(--status-completed-bg);
-  color: var(--status-completed-text);
-}
-
-.status-badge.in-progress {
-  background-color: var(--status-inprogress-bg);
-  color: var(--status-inprogress-text);
-}
-
-.status-badge.draft {
-  background-color: var(--status-draft-bg);
-  color: var(--status-draft-text);
-}
-
-.action-btn {
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-}
-
-.action-btn:hover {
-  background-color: #e5e7eb;
-  color: var(--text-main);
-}
-
-.table-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 16px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.pagination {
-  display: flex;
-  gap: 8px;
-}
-
-.page-btn {
-  padding: 6px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-muted);
-  background: white;
-}
-
-.page-btn:hover:not(:disabled) {
-  border-color: #d1d5db;
-  color: var(--text-main);
-}
-
-.page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Typography styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: var(--transition);
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    outline: none;
+    transition: var(--transition);
+  }
+
+  .input-field:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  /* Layout container */
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 32px;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .brand-icon {
+    width: 28px;
+    height: 28px;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6;
+    border-radius: var(--radius-md);
+    padding: 8px 16px;
+    width: 240px;
+    gap: 8px;
+    color: var(--text-muted);
+  }
+
+  .search-bar input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    outline: none;
+    color: var(--text-main);
+  }
+
+  .search-bar input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .nav-links a.active {
+    color: var(--primary-color);
+    position: relative;
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    border-radius: 2px 2px 0 0;
+  }
+
+  .nav-links a:hover:not(.active) {
+    color: var(--text-main);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    background-color: transparent;
+    transition: var(--transition);
+  }
+
+  .icon-btn:hover {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transform: scale(1.05);
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .avatar:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .page-title .subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .page-title h1 {
+    font-size: 28px;
+    letter-spacing: -0.02em;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-color) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+  }
+
+  /* Split Layout */
+  .grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  /* Cards */
+  .card {
+    background-color: var(--surface-color);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Request Banner */
+  .request-banner {
+    background-color: var(--bg-color);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .request-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .request-info-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .request-info-top .badge {
+    background-color: #dbeafe;
+    color: #1e40af;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .request-info-top h3 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .request-info-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .request-info-meta span {
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  .btn-secondary {
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid #bfdbfe;
+    background-color: #eff6ff;
+    border-radius: 6px;
+  }
+
+  .btn-secondary:hover {
+    background-color: #dbeafe;
+  }
+
+  /* Tab Toggle */
+  .tabs {
+    display: flex;
+    background-color: #f3f4f6;
+    border-radius: var(--radius-md);
+    padding: 4px;
+    margin-bottom: 24px;
+  }
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-radius: 6px;
+    transition: var(--transition);
+  }
+
+  .tab.active {
+    background-color: var(--surface-color);
+    color: var(--text-main);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .tab:hover:not(.active) {
+    color: var(--text-main);
+    background-color: #e5e7eb;
+  }
+
+  /* Drag and Drop Area */
+  .dropzone {
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius-lg);
+    padding: 48px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f8fafc;
+    transition: var(--transition);
+    cursor: pointer;
+    margin-bottom: 24px;
+  }
+
+  .dropzone:hover {
+    border-color: var(--primary-color);
+    background-color: #eff6ff;
+  }
+
+  .dropzone-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #dbeafe;
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
+  }
+
+  .dropzone h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .dropzone p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .btn-outline {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .btn-outline:hover {
+    background-color: #eff6ff;
+  }
+
+  /* Input Row */
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-main);
+  }
+
+  /* Planning Calendar Details */
+  .calendar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .calendar-card .card-title {
+    margin-bottom: 0;
+  }
+
+  .fieldset {
+    margin-bottom: 16px;
+  }
+
+  .fieldset label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .date-picker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: var(--text-main);
+    background: var(--bg-color);
+  }
+
+  .calendar-grid {
+    width: 100%;
+  }
+
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: var(--transition);
+  }
+
+  .cal-day:hover:not(.empty) {
+    background-color: #f3f4f6;
+  }
+
+  .cal-day.empty {
+    cursor: default;
+  }
+
+  .cal-day.muted {
+    color: #d1d5db;
+  }
+
+  .cal-day.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+  }
+
+  .cal-day.highlight {
+    background-color: #eff6ff;
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .legend-color {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+
+  .legend-color.blue {
+    background-color: var(--primary-color);
+  }
+
+  .legend-color.light-blue {
+    background-color: #bfdbfe;
+  }
+
+  /* Table Section */
+  .table-section {
+    background-color: var(--surface-color);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .table-header h2 {
+    font-size: 18px;
+  }
+
+  .btn-ghost {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+  }
+
+  .btn-ghost:hover {
+    background-color: #f3f4f6;
+    color: var(--text-main);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  td {
+    padding: 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+  }
+
+  tbody tr {
+    transition: var(--transition);
+  }
+
+  tbody tr:hover {
+    background-color: #f9fafb;
+  }
+
+  .req-id {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .style-name {
+    font-weight: 500;
+  }
+
+  .customer-name {
+    color: var(--text-muted);
+  }
+
+  .assignee {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .assignee-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .status-badge.pending {
+    background-color: var(--status-pending-bg);
+    color: var(--status-pending-text);
+  }
+
+  .status-badge.completed {
+    background-color: var(--status-completed-bg);
+    color: var(--status-completed-text);
+  }
+
+  .status-badge.in-progress {
+    background-color: var(--status-inprogress-bg);
+    color: var(--status-inprogress-text);
+  }
+
+  .status-badge.draft {
+    background-color: var(--status-draft-bg);
+    color: var(--status-draft-text);
+  }
+
+  .action-btn {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+  }
+
+  .action-btn:hover {
+    background-color: #e5e7eb;
+    color: var(--text-main);
+  }
+
+  .table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .pagination {
+    display: flex;
+    gap: 8px;
+  }
+
+  .page-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: white;
+  }
+
+  .page-btn:hover:not(:disabled) {
+    border-color: #d1d5db;
+    color: var(--text-main);
+  }
+
+  .page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 </style>
+
 <body>
   <div class="app-container">
     <!-- Top Navigation -->
@@ -1081,179 +1082,65 @@ tbody tr:hover {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-  // ============================================================
-  // FIX 2: Removed the broken %27 at the end of the URL.
-  //        Paste your Apps Script Web App URL below (no quotes issues).
-  // ============================================================
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSdyx3uNKZPhbhwg_eIc_VmRTvUNF8-Q5z9hunbr7seSuz2nNdO-awDI8qserEQHkr/exec';
+      // ============================================================
+      // FIX 2: Removed the broken %27 at the end of the URL.
+      //        Paste your Apps Script Web App URL below (no quotes issues).
+      // ============================================================
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSdyx3uNKZPhbhwg_eIc_VmRTvUNF8-Q5z9hunbr7seSuz2nNdO-awDI8qserEQHkr/exec';
 
-  // --- Tab Interactivity Removed ---
+      // --- Tab Interactivity Removed ---
 
-  // --- Dynamic Table Data (from Google Sheets) ---
-  let requestsRows = [];
+      // --- Dynamic Table Data (from Google Sheets) ---
+      let requestsRows = [];
 
-  // Filter states
-  let currentTab = 'Uploads';
-  let searchText = '';
-  let filterCNumber = '';
-  let filterPLName = '';
-  let filterCustomer = '';
-  let filterStatus = '';
+      // Filter states
+      let currentTab = 'Uploads';
+      let searchText = '';
+      let filterCNumber = '';
+      let filterPLName = '';
+      let filterCustomer = '';
+      let filterStatus = '';
 
-  const tableBody = document.getElementById('table-body');
-  const activeRequestBanner = document.getElementById('active-request-banner');
-  const uploadConfigSection = document.getElementById('upload-config-section');
+      const tableBody = document.getElementById('table-body');
+      const activeRequestBanner = document.getElementById('active-request-banner');
+      const uploadConfigSection = document.getElementById('upload-config-section');
 
-  // Load Data from Google Sheets API
-  async function loadTableData() {
-    tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px;">⏳ Loading data from Google Sheets...</td></tr>';
-    try {
-      const response = await fetch(GOOGLE_SCRIPT_URL);
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
+      // Load Data from Google Sheets API
+      async function loadTableData() {
+        tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px;">⏳ Loading data from Google Sheets...</td></tr>';
+        try {
+          const response = await fetch(GOOGLE_SCRIPT_URL);
+          if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.status}`);
+          }
 
-      const data = await response.json();
+          const data = await response.json();
 
-      // Handle error object returned from Apps Script
-      if (data.error) {
-        throw new Error(data.error);
-      }
+          // Handle error object returned from Apps Script
+          if (data.error) {
+            throw new Error(data.error);
+          }
 
-      requestsRows = data;
-      renderTable();
-    } catch (error) {
-      console.error("Failed to load data from Google Sheets:", error);
-      tableBody.innerHTML = `
+          requestsRows = data;
+          renderTable();
+        } catch (error) {
+          console.error("Failed to load data from Google Sheets:", error);
+          tableBody.innerHTML = `
         <tr>
           <td colspan="8" style="text-align: center; color: #dc2626; padding: 40px;">
             ❌ Failed to load data: <b>${error.message}</b><br/>
             Make sure you have <b>redeployed</b> the Apps Script as a new version after changes.
           </td>
         </tr>`;
-    }
-  }
-
-  // Helper to globally parse Dates for Calendar
-  const globalParseSheetDate = (dateStr) => {
-    if (!dateStr || String(dateStr).trim() === '-' || String(dateStr).trim() === '') return null;
-    let parts = String(dateStr).trim().split(' ');
-    let datePart = parts[0];
-    let timePart = parts[1] || '00:00:00';
-    if (datePart.includes('/')) {
-      let pts = datePart.split('/');
-      if (pts.length === 3) {
-        let yr = pts[2].length === 2 ? '20' + pts[2] : pts[2];
-        let d = new Date(`${yr}-${pts[1]}-${pts[0]}T${timePart}`);
-        if (!isNaN(d)) return d;
-      }
-    }
-    let fallback = new Date(dateStr);
-    return isNaN(fallback) ? null : fallback;
-  };
-
-  // Render HTML Table
-  function renderTable() {
-    const tableSection = document.querySelector('.table-section');
-    const calendarSection = document.getElementById('calendar-section');
-
-    if (currentTab === 'Calendar') {
-      tableSection.style.display = 'none';
-      calendarSection.style.display = 'block';
-      document.getElementById('active-request-banner').style.display = 'none';
-      document.getElementById('upload-config-section').style.display = 'none';
-      renderCalendar();
-      return;
-    } else {
-      tableSection.style.display = 'block';
-      calendarSection.style.display = 'none';
-    }
-
-    tableBody.innerHTML = '';
-
-    // Update the section title so the user knows which tab they are viewing
-    const tableHeaderTitle = document.querySelector('.table-header h2');
-    if (tableHeaderTitle) {
-      tableHeaderTitle.textContent = currentTab === 'Uploads' ? 'Upload History & Queue' : 'Completed Requests';
-    }
-
-    const thOverdueLeadtime = document.getElementById('th-overdue-leadtime');
-    if (thOverdueLeadtime) {
-      thOverdueLeadtime.textContent = currentTab === 'Uploads' ? 'PL Overdue' : 'PL Leadtime';
-    }
-
-    const openFilterBtn = document.getElementById('open-filter');
-    const exportExcelBtn = document.getElementById('export-excel-btn');
-    if (openFilterBtn && exportExcelBtn) {
-      openFilterBtn.style.display = 'inline-flex';
-      if (currentTab === 'Uploads') {
-        exportExcelBtn.style.display = 'none';
-      } else {
-        exportExcelBtn.style.display = 'inline-flex';
-      }
-    }
-
-    // Filtering logic
-    let filteredRows = requestsRows.filter(row => {
-      const statusUpper = (row.status || '').toUpperCase().trim();
-      const statusClassUpper = (row.statusClass || '').toUpperCase().trim();
-
-      const isPendingStatus = statusUpper.includes('PENDING') || statusClassUpper.includes('PENDING');
-      const isBlackStatus = statusUpper.includes('BLACK') || statusClassUpper.includes('BLACK');
-
-      // 1. Tab filter
-      const isCompleted = statusUpper.includes('COMPLETE') || statusUpper === 'AWAITING PATTERN' || statusUpper === 'PM ASSIGN';
-      if (currentTab === 'Uploads' && isCompleted && !(isPendingStatus || isBlackStatus)) return false;
-      if (currentTab === 'Completed' && !isCompleted) return false;
-
-      // 2b. Techpack gallery requirement:
-      // In the "Uploads" (pending) view, only show Pending OR Black-status items.
-      if (currentTab === 'Uploads' && !(isPendingStatus || isBlackStatus)) return false;
-
-      // 2. Search Box
-      if (searchText) {
-        const query = searchText.toLowerCase();
-        const matchesID = (row.id || '').toLowerCase().includes(query);
-        const matchesCustomer = (row.customer || '').toLowerCase().includes(query);
-        if (!matchesID && !matchesCustomer) return false;
+        }
       }
 
-      // 3. Modal Filters
-      if (filterCNumber && !(row.id || '').toLowerCase().includes(filterCNumber.toLowerCase())) return false;
-      if (filterPLName && !(row.assignee || '').toLowerCase().includes(filterPLName.toLowerCase())) return false;
-      if (filterCustomer && !(row.customer || '').toLowerCase().includes(filterCustomer.toLowerCase())) return false;
-      if (filterStatus && !(row.status || '').toLowerCase().includes(filterStatus.toLowerCase())) return false;
-
-      return true;
-    });
-
-    const paginationInfo = document.getElementById('pagination-info');
-    if (paginationInfo) {
-      paginationInfo.textContent = `Total Requests: ${filteredRows.length}`;
-    }
-
-    if (!filteredRows || filteredRows.length === 0) {
-      const message = currentTab === 'Uploads'
-        ? "No pending uploads found. Check the 'Completed' tab or adjust filters."
-        : "No completed requests found.";
-      tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 40px; color: #666;">${message}</td></tr>`;
-      return;
-    }
-
-    filteredRows.forEach((row, index) => {
-      const safeId = row.id || `REQ-${index + 1}`;
-
-      let colValue = '-';
-      let actionButtons = '';
-
-      // Helper to parse DD/MM/YYYY or DD/MM/YY reliably (WITH TIME!)
-      const parseSheetDate = (dateStr) => {
+      // Helper to globally parse Dates for Calendar
+      const globalParseSheetDate = (dateStr) => {
         if (!dateStr || String(dateStr).trim() === '-' || String(dateStr).trim() === '') return null;
-
         let parts = String(dateStr).trim().split(' ');
         let datePart = parts[0];
         let timePart = parts[1] || '00:00:00';
-
         if (datePart.includes('/')) {
           let pts = datePart.split('/');
           if (pts.length === 3) {
@@ -1262,27 +1149,141 @@ tbody tr:hover {
             if (!isNaN(d)) return d;
           }
         }
-
         let fallback = new Date(dateStr);
         return isNaN(fallback) ? null : fallback;
       };
 
-      if (currentTab === 'Uploads') {
-        // Calculate PL Overdue (Today - Created Date)
-        const created = parseSheetDate(row.createdDate);
-        if (created && !isNaN(created)) {
-          const today = new Date();
-          // Multiply by 1000 ms * 60 s * 60 m = hours
-          const diffHours = Math.floor((today - created) / (1000 * 60 * 60));
+      // Render HTML Table
+      function renderTable() {
+        const tableSection = document.querySelector('.table-section');
+        const calendarSection = document.getElementById('calendar-section');
 
-          if (diffHours > 24) {
-            colValue = `<span style="background-color: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; border: 1px solid #f87171; box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);">${diffHours} hr</span>`;
+        if (currentTab === 'Calendar') {
+          tableSection.style.display = 'none';
+          calendarSection.style.display = 'block';
+          document.getElementById('active-request-banner').style.display = 'none';
+          document.getElementById('upload-config-section').style.display = 'none';
+          renderCalendar();
+          return;
+        } else {
+          tableSection.style.display = 'block';
+          calendarSection.style.display = 'none';
+        }
+
+        tableBody.innerHTML = '';
+
+        // Update the section title so the user knows which tab they are viewing
+        const tableHeaderTitle = document.querySelector('.table-header h2');
+        if (tableHeaderTitle) {
+          tableHeaderTitle.textContent = currentTab === 'Uploads' ? 'Upload History & Queue' : 'Completed Requests';
+        }
+
+        const thOverdueLeadtime = document.getElementById('th-overdue-leadtime');
+        if (thOverdueLeadtime) {
+          thOverdueLeadtime.textContent = currentTab === 'Uploads' ? 'PL Overdue' : 'PL Leadtime';
+        }
+
+        const openFilterBtn = document.getElementById('open-filter');
+        const exportExcelBtn = document.getElementById('export-excel-btn');
+        if (openFilterBtn && exportExcelBtn) {
+          openFilterBtn.style.display = 'inline-flex';
+          if (currentTab === 'Uploads') {
+            exportExcelBtn.style.display = 'none';
           } else {
-            colValue = diffHours + ' hr';
+            exportExcelBtn.style.display = 'inline-flex';
           }
         }
 
-        actionButtons = `
+        // Filtering logic
+        let filteredRows = requestsRows.filter(row => {
+          const statusUpper = (row.status || '').toUpperCase().trim();
+          const statusClassUpper = (row.statusClass || '').toUpperCase().trim();
+
+          const isPendingStatus = statusUpper.includes('PENDING') || statusClassUpper.includes('PENDING');
+          const isBlackStatus = statusUpper.includes('BLACK') || statusClassUpper.includes('BLACK');
+
+          // 1. Tab filter
+          const isCompleted = statusUpper.includes('COMPLETE') || statusUpper === 'AWAITING PATTERN' || statusUpper === 'PM ASSIGN';
+          if (currentTab === 'Uploads' && isCompleted && !(isPendingStatus || isBlackStatus)) return false;
+          if (currentTab === 'Completed' && !isCompleted) return false;
+
+          // 2b. Techpack gallery requirement:
+          // In the "Uploads" (pending) view, only show Pending OR Black-status items.
+          if (currentTab === 'Uploads' && !(isPendingStatus || isBlackStatus)) return false;
+
+          // 2. Search Box
+          if (searchText) {
+            const query = searchText.toLowerCase();
+            const matchesID = (row.id || '').toLowerCase().includes(query);
+            const matchesCustomer = (row.customer || '').toLowerCase().includes(query);
+            if (!matchesID && !matchesCustomer) return false;
+          }
+
+          // 3. Modal Filters
+          if (filterCNumber && !(row.id || '').toLowerCase().includes(filterCNumber.toLowerCase())) return false;
+          if (filterPLName && !(row.assignee || '').toLowerCase().includes(filterPLName.toLowerCase())) return false;
+          if (filterCustomer && !(row.customer || '').toLowerCase().includes(filterCustomer.toLowerCase())) return false;
+          if (filterStatus && !(row.status || '').toLowerCase().includes(filterStatus.toLowerCase())) return false;
+
+          return true;
+        });
+
+        const paginationInfo = document.getElementById('pagination-info');
+        if (paginationInfo) {
+          paginationInfo.textContent = `Total Requests: ${filteredRows.length}`;
+        }
+
+        if (!filteredRows || filteredRows.length === 0) {
+          const message = currentTab === 'Uploads'
+            ? "No pending uploads found. Check the 'Completed' tab or adjust filters."
+            : "No completed requests found.";
+          tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 40px; color: #666;">${message}</td></tr>`;
+          return;
+        }
+
+        filteredRows.forEach((row, index) => {
+          const safeId = row.id || `REQ-${index + 1}`;
+
+          let colValue = '-';
+          let actionButtons = '';
+
+          // Helper to parse DD/MM/YYYY or DD/MM/YY reliably (WITH TIME!)
+          const parseSheetDate = (dateStr) => {
+            if (!dateStr || String(dateStr).trim() === '-' || String(dateStr).trim() === '') return null;
+
+            let parts = String(dateStr).trim().split(' ');
+            let datePart = parts[0];
+            let timePart = parts[1] || '00:00:00';
+
+            if (datePart.includes('/')) {
+              let pts = datePart.split('/');
+              if (pts.length === 3) {
+                let yr = pts[2].length === 2 ? '20' + pts[2] : pts[2];
+                let d = new Date(`${yr}-${pts[1]}-${pts[0]}T${timePart}`);
+                if (!isNaN(d)) return d;
+              }
+            }
+
+            let fallback = new Date(dateStr);
+            return isNaN(fallback) ? null : fallback;
+          };
+
+          if (currentTab === 'Uploads') {
+            // Calculate PL Overdue (Today - Created Date)
+            const created = parseSheetDate(row.createdDate);
+            if (created && !isNaN(created)) {
+              const today = new Date();
+              // Multiply by 1000 ms * 60 s * 60 m = hours
+              const diffHours = Math.floor((today - created) / (1000 * 60 * 60));
+
+              if (diffHours > 24) {
+                colValue = `<span style="background-color: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; border: 1px solid #f87171; box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);">${diffHours} hr</span>`;
+              } else {
+                colValue = diffHours + ' hr';
+              }
+            }
+
+            actionButtons = `
           <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
             <button class="btn-primary upload-techpack-btn" data-id="${safeId}" style="display: inline-flex; padding: 6px 12px; font-size: 12px; margin-top: 4px;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
@@ -1294,31 +1295,31 @@ tbody tr:hover {
             </button>
           </div>
         `;
-      } else {
-        // Calculate PL_Leadtime (Uploaded Date - Created Date) for Completed
-        const created = parseSheetDate(row.createdDate);
-        const uploaded = parseSheetDate(row.PL_Uploaded_Date);
-
-        if (created && !isNaN(created) && uploaded && !isNaN(uploaded)) {
-          // Multiply by 1000 ms * 60 s * 60 m = hours
-          const diffHours = Math.floor((uploaded - created) / (1000 * 60 * 60));
-
-          if (diffHours > 24) {
-            colValue = `<span style="background-color: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; border: 1px solid #f87171; box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);">${diffHours} hr</span>`;
           } else {
-            colValue = diffHours + ' hr';
-          }
-        }
+            // Calculate PL_Leadtime (Uploaded Date - Created Date) for Completed
+            const created = parseSheetDate(row.createdDate);
+            const uploaded = parseSheetDate(row.PL_Uploaded_Date);
 
-        actionButtons = `
+            if (created && !isNaN(created) && uploaded && !isNaN(uploaded)) {
+              // Multiply by 1000 ms * 60 s * 60 m = hours
+              const diffHours = Math.floor((uploaded - created) / (1000 * 60 * 60));
+
+              if (diffHours > 24) {
+                colValue = `<span style="background-color: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 12px; display: inline-block; border: 1px solid #f87171; box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);">${diffHours} hr</span>`;
+              } else {
+                colValue = diffHours + ' hr';
+              }
+            }
+
+            actionButtons = `
           <div style="display: flex; justify-content: center; align-items: center;">
             <button class="btn-outline details-btn" data-id="${safeId}" style="padding: 6px 10px; font-size: 12px;">Details</button>
           </div>
         `;
-      }
+          }
 
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
         <td class="req-id">${safeId}</td>
         <td class="style-name">${row.style || '-'}</td>
         <td class="customer-name">${row.customer || '-'}</td>
@@ -1339,411 +1340,411 @@ tbody tr:hover {
           ${actionButtons}
         </td>
       `;
-      tableBody.appendChild(tr);
-    });
+          tableBody.appendChild(tr);
+        });
 
-    // Attach Click Events to newly created buttons
-    const uploadBtns = document.querySelectorAll('.upload-techpack-btn');
-    uploadBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = e.currentTarget.getAttribute('data-id');
-        const rowData = requestsRows.find((r, i) => (r.id || `REQ-${i + 1}`) === id);
+        // Attach Click Events to newly created buttons
+        const uploadBtns = document.querySelectorAll('.upload-techpack-btn');
+        uploadBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const rowData = requestsRows.find((r, i) => (r.id || `REQ-${i + 1}`) === id);
 
-        if (rowData) {
-          document.getElementById('active-req-id').textContent = rowData.id || id;
-          document.getElementById('active-req-style').textContent = rowData.style || '-';
-          document.getElementById('active-req-customer').textContent = rowData.customer || '-';
-          activeRequestBanner.style.display = 'flex';
+            if (rowData) {
+              document.getElementById('active-req-id').textContent = rowData.id || id;
+              document.getElementById('active-req-style').textContent = rowData.style || '-';
+              document.getElementById('active-req-customer').textContent = rowData.customer || '-';
+              activeRequestBanner.style.display = 'flex';
 
-          document.getElementById('config-req-id').textContent = rowData.id || id;
-          const plNameElem = document.getElementById('config-pl-name');
-          if (plNameElem) {
-            plNameElem.textContent = rowData.assignee ? `PL: ${rowData.assignee}` : 'PL: Unassigned';
-          }
+              document.getElementById('config-req-id').textContent = rowData.id || id;
+              const plNameElem = document.getElementById('config-pl-name');
+              if (plNameElem) {
+                plNameElem.textContent = rowData.assignee ? `PL: ${rowData.assignee}` : 'PL: Unassigned';
+              }
 
-          const browseBtn = document.getElementById('browse-files-btn');
-          if (browseBtn) {
-            browseBtn.dataset.link = rowData.folderLink || '';
-          }
+              const browseBtn = document.getElementById('browse-files-btn');
+              if (browseBtn) {
+                browseBtn.dataset.link = rowData.folderLink || '';
+              }
 
-          uploadConfigSection.style.display = 'block';
-          uploadConfigSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    const detailsBtns = document.querySelectorAll('.details-btn');
-    detailsBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = e.currentTarget.getAttribute('data-id');
-        const rowData = requestsRows.find((r, i) => (r.id || `REQ-${i + 1}`) === id);
-
-        if (rowData) {
-          const detailsContent = document.getElementById('details-content');
-
-          // Map to present exactly what the user requested, in a beautiful layout
-          const displayFields = [
-            { label: 'Request ID', value: rowData.id },
-            { label: 'Customer', value: rowData.Customer || rowData.customer },
-            { label: 'Cus Dept', value: rowData.Cus_Dept || rowData.cusDept },
-            { label: 'TKL Season', value: rowData.TKL_Season || rowData.tklSeason },
-            { label: 'Main Fabric', value: rowData.Main_Fabric || rowData.mainFabric },
-            { label: 'Fabric Header', value: rowData.Fabric_Header || rowData.fabricHeader },
-            { label: 'PL Name', value: rowData.PL_Name || rowData.assignee },
-            { label: 'Status', value: rowData.Status || rowData.status },
-            { label: 'Created', value: rowData.Created || rowData.createdDate },
-            { label: 'Created By', value: rowData['Created By'] || rowData.createdBy },
-            { label: 'Folder Path', value: rowData.Folder_Path || rowData.folderLink }
-          ];
-
-          detailsContent.innerHTML = displayFields.map(field => {
-            // Apply special styling to the folder link
-            let displayValue = field.value || '-';
-            if (field.label === 'Folder Path' && displayValue !== '-') {
-              displayValue = `<a href="${displayValue}" target="_blank" style="color: var(--primary-color); word-break: break-all; text-decoration: underline;">Open Folder</a>`;
-            } else if (field.label === 'Status') {
-              displayValue = `<span class="badge" style="background-color: var(--status-progress-bg); color: var(--status-progress-text); padding: 2px 8px; border-radius: 12px; font-weight: 600; font-size: 12px;">${displayValue}</span>`;
+              uploadConfigSection.style.display = 'block';
+              uploadConfigSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+          });
+        });
 
-            return `
+        const detailsBtns = document.querySelectorAll('.details-btn');
+        detailsBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const rowData = requestsRows.find((r, i) => (r.id || `REQ-${i + 1}`) === id);
+
+            if (rowData) {
+              const detailsContent = document.getElementById('details-content');
+
+              // Map to present exactly what the user requested, in a beautiful layout
+              const displayFields = [
+                { label: 'Request ID', value: rowData.id },
+                { label: 'Customer', value: rowData.Customer || rowData.customer },
+                { label: 'Cus Dept', value: rowData.Cus_Dept || rowData.cusDept },
+                { label: 'TKL Season', value: rowData.TKL_Season || rowData.tklSeason },
+                { label: 'Main Fabric', value: rowData.Main_Fabric || rowData.mainFabric },
+                { label: 'Fabric Header', value: rowData.Fabric_Header || rowData.fabricHeader },
+                { label: 'PL Name', value: rowData.PL_Name || rowData.assignee },
+                { label: 'Status', value: rowData.Status || rowData.status },
+                { label: 'Created', value: rowData.Created || rowData.createdDate },
+                { label: 'Created By', value: rowData['Created By'] || rowData.createdBy },
+                { label: 'Folder Path', value: rowData.Folder_Path || rowData.folderLink }
+              ];
+
+              detailsContent.innerHTML = displayFields.map(field => {
+                // Apply special styling to the folder link
+                let displayValue = field.value || '-';
+                if (field.label === 'Folder Path' && displayValue !== '-') {
+                  displayValue = `<a href="${displayValue}" target="_blank" style="color: var(--primary-color); word-break: break-all; text-decoration: underline;">Open Folder</a>`;
+                } else if (field.label === 'Status') {
+                  displayValue = `<span class="badge" style="background-color: var(--status-progress-bg); color: var(--status-progress-text); padding: 2px 8px; border-radius: 12px; font-weight: 600; font-size: 12px;">${displayValue}</span>`;
+                }
+
+                return `
               <div style="display:flex; justify-content:space-between; border-bottom:1px solid #f3f4f6; padding: 10px 4px; align-items: flex-start; gap: 16px;">
                 <strong style="color: var(--text-muted); font-weight: 500; min-width: 120px;">${field.label}</strong>
                 <span style="color: var(--text-main); font-weight: 500; text-align: right; word-break: break-word;">${displayValue}</span>
               </div>
             `;
-          }).join('');
+              }).join('');
 
-          document.getElementById('details-modal').style.display = 'flex';
-        }
-      });
-    });
-
-    const openLinkBtns = document.querySelectorAll('.open-link-btn');
-    openLinkBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const link = e.currentTarget.getAttribute('data-link');
-        if (link && link.trim() !== '') {
-          window.open(link, '_blank');
-        } else {
-          alert("No folder path assigned for this request.");
-        }
-      });
-    });
-  }
-
-  // --- Launch Table Fetch on Load ---
-  loadTableData();
-
-  // --- Navigation to Folder URL ---
-  const browseFilesBtn = document.getElementById('browse-files-btn');
-  let browseDateCaptured = null;
-
-  // Helper to get formatted date + time
-  const getFullDateTime = () => {
-    const d = new Date();
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-    const hr = String(d.getHours()).padStart(2, '0');
-    const min = String(d.getMinutes()).padStart(2, '0');
-    const sec = String(d.getSeconds()).padStart(2, '0');
-    return `${day}/${month}/${year} ${hr}:${min}:${sec}`;
-  };
-
-  if (browseFilesBtn) {
-    browseFilesBtn.addEventListener('click', () => {
-      // Capture the date and time when the user clicks "Browse Files"
-      browseDateCaptured = getFullDateTime();
-
-      const link = browseFilesBtn.dataset.link;
-      if (link && link.trim() !== '') {
-        window.open(link, '_blank');
-      } else {
-        alert("This record doesn't have a valid Folder Link assigned to it yet!");
-      }
-    });
-  }
-
-  // --- Clear Selection ---
-  document.getElementById('clear-request-btn').addEventListener('click', () => {
-    activeRequestBanner.style.display = 'none';
-    uploadConfigSection.style.display = 'none';
-    browseDateCaptured = null; // Reset captured date on clear
-  });
-
-  // --- Submit to Google Sheets via Apps Script ---
-  const submitBtn = document.getElementById('submit-techpack-btn');
-  const emailModal = document.getElementById('email-preview-modal');
-  const cancelEmailBtn = document.getElementById('cancel-email-btn');
-  const confirmUploadBtn = document.getElementById('confirm-upload-send-btn');
-
-  // Fields inside Email Modal
-  const previewEmailTo = document.getElementById('preview-email-to');
-  const previewEmailSubject = document.getElementById('preview-email-subject');
-  const previewEmailBody = document.getElementById('preview-email-body');
-
-  submitBtn.addEventListener('click', () => {
-    const activeReqId = document.getElementById('active-req-id').textContent;
-
-    if (!activeReqId || activeReqId === 'Request ID: -' || activeReqId === '-') {
-      alert("No active request selected!");
-      return;
-    }
-
-    // Grab EXACT data for formatting
-    const currentId = activeReqId.replace('Request ID: ', '').trim();
-    const currentRef = document.getElementById('active-req-style').textContent || '-';
-    const currentCustomer = document.getElementById('active-req-customer').textContent || '-';
-    const rawPL = document.getElementById('config-pl-name').textContent || '';
-    const currentPL = rawPL.replace('PL: ', '').trim();
-    const appLink = window.location.origin + window.location.pathname;
-
-    // PRE-FILL Modal Inputs
-    previewEmailTo.value = "YTeeluck@tropicknits.com"; // Fixed default receiver
-    previewEmailSubject.value = `Techpack Uploaded: ${currentId}`;
-
-    // Format to match the desired layout exactly
-    const createdStamp = new Date().toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(',', '');
-    previewEmailBody.value = `Hi,\n\nTechpack has been uploaded.\n\nRef: ${currentRef}\nC_Number: ${currentId}\nCustomer: ${currentCustomer}\n\nApp link: ${appLink}\n\nRegards,\n\n${currentPL}`;
-
-    // Open Modal
-    emailModal.style.display = 'flex';
-  });
-
-  // Cancel Email Preview
-  if (cancelEmailBtn) {
-    cancelEmailBtn.addEventListener('click', () => {
-      emailModal.style.display = 'none';
-    });
-  }
-
-  // Confirm Upload & Send Mail
-  if (confirmUploadBtn) {
-    confirmUploadBtn.addEventListener('click', async () => {
-      const activeReqId = document.getElementById('active-req-id').textContent;
-      const rawPL = document.getElementById('config-pl-name').textContent || '';
-      const currentPL = rawPL.replace('PL: ', '').trim();
-
-      // UX Loading State
-      const originalText = confirmUploadBtn.textContent;
-      confirmUploadBtn.textContent = "Saving to Database...";
-      confirmUploadBtn.style.opacity = '0.7';
-      confirmUploadBtn.style.pointerEvents = 'none';
-
-      // Now we gather the EXACT edited text from the preview modal to send to Google!
-      const eTo = previewEmailTo.value.trim();
-      const eSub = previewEmailSubject.value.trim();
-      const eBody = previewEmailBody.value;
-
-      const payload = {
-        requestId: activeReqId.replace('Request ID: ', '').trim(),
-        processRoute: 'N/A',
-        specialInstructions: 'N/A',
-        pathFlow: 'N/A',
-        timestamp: new Date().toISOString(),
-        status: 'Awaiting Pattern',
-        PL_Uploaded_Date: browseDateCaptured || getFullDateTime(),
-        emailTo: "YTeeluck@tropicknits.com", // HARDCODED FORCE STRING
-        emailSubject: eSub,
-        emailBody: eBody,
-        plAlias: currentPL || "Techpack System",
-        currentRef: document.getElementById('active-req-style').textContent || '-',
-        currentCustomer: document.getElementById('active-req-customer').textContent || '-',
-        appLink: window.location.origin + window.location.pathname
-      };
-
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+              document.getElementById('details-modal').style.display = 'flex';
+            }
+          });
         });
 
-        alert("✅ Data saved and Email successfully fired from backend!");
-
-        // Close Modal & Reset Layout
-        emailModal.style.display = 'none';
-        document.getElementById('active-request-banner').style.display = 'none';
-        document.getElementById('upload-config-section').style.display = 'none';
-        browseDateCaptured = null;
-
-      } catch (error) {
-        console.error("Error saving data:", error);
-        alert("❌ Failed to save data. See console for details.");
-      } finally {
-        confirmUploadBtn.textContent = originalText;
-        confirmUploadBtn.style.opacity = '1';
-        confirmUploadBtn.style.pointerEvents = 'auto';
-      }
-    });
-  }
-
-  // --- Search Input ---
-  const searchInput = document.getElementById('search-input');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchText = e.target.value.trim();
-      renderTable();
-    });
-  }
-
-  // --- Filter Modal ---
-  const openFilterBtn = document.getElementById('open-filter');
-  const closeFilterBtn = document.getElementById('close-filter-btn');
-  const filterModal = document.getElementById('filter-modal');
-  const applyFilterBtn = document.getElementById('apply-filter-btn');
-
-  if (openFilterBtn && filterModal) {
-    openFilterBtn.addEventListener('click', () => {
-      filterModal.style.display = 'flex';
-    });
-  }
-
-  const exportExcelBtn = document.getElementById('export-excel-btn');
-  if (exportExcelBtn) {
-    exportExcelBtn.addEventListener('click', () => {
-      // Ensure XLSX library is loaded
-      if (typeof XLSX === 'undefined') {
-        alert("Excel export library is loading. Please try again in a second.");
-        return;
+        const openLinkBtns = document.querySelectorAll('.open-link-btn');
+        openLinkBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const link = e.currentTarget.getAttribute('data-link');
+            if (link && link.trim() !== '') {
+              window.open(link, '_blank');
+            } else {
+              alert("No folder path assigned for this request.");
+            }
+          });
+        });
       }
 
-      const filteredForCompleted = requestsRows.filter(row => {
-        const s = (row.status || '').toUpperCase().trim();
-        return s === 'AWAITING PATTERN' || s === 'PM ASSIGN' || s.includes('COMPLETE');
+      // --- Launch Table Fetch on Load ---
+      loadTableData();
+
+      // --- Navigation to Folder URL ---
+      const browseFilesBtn = document.getElementById('browse-files-btn');
+      let browseDateCaptured = null;
+
+      // Helper to get formatted date + time
+      const getFullDateTime = () => {
+        const d = new Date();
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        const hr = String(d.getHours()).padStart(2, '0');
+        const min = String(d.getMinutes()).padStart(2, '0');
+        const sec = String(d.getSeconds()).padStart(2, '0');
+        return `${day}/${month}/${year} ${hr}:${min}:${sec}`;
+      };
+
+      if (browseFilesBtn) {
+        browseFilesBtn.addEventListener('click', () => {
+          // Capture the date and time when the user clicks "Browse Files"
+          browseDateCaptured = getFullDateTime();
+
+          const link = browseFilesBtn.dataset.link;
+          if (link && link.trim() !== '') {
+            window.open(link, '_blank');
+          } else {
+            alert("This record doesn't have a valid Folder Link assigned to it yet!");
+          }
+        });
+      }
+
+      // --- Clear Selection ---
+      document.getElementById('clear-request-btn').addEventListener('click', () => {
+        activeRequestBanner.style.display = 'none';
+        uploadConfigSection.style.display = 'none';
+        browseDateCaptured = null; // Reset captured date on clear
       });
 
-      // Map out data for Excel
-      const excelData = filteredForCompleted.map(row => ({
-        "Request ID": row.id || '',
-        "Style Name": row.style || '',
-        "Customer": row.customer || '',
-        "Assignee": row.assignee || '',
-        "Costing Ready Date": row.due || '',
-        "Status": row.status || '',
-        "Uploaded Date": row.PL_Uploaded_Date || '',
-        "Folder Link": row.folderLink || ''
-      }));
+      // --- Submit to Google Sheets via Apps Script ---
+      const submitBtn = document.getElementById('submit-techpack-btn');
+      const emailModal = document.getElementById('email-preview-modal');
+      const cancelEmailBtn = document.getElementById('cancel-email-btn');
+      const confirmUploadBtn = document.getElementById('confirm-upload-send-btn');
 
-      // Create a worksheet
-      const worksheet = XLSX.utils.json_to_sheet(excelData);
-      // Create a new workbook
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Completed Requests");
+      // Fields inside Email Modal
+      const previewEmailTo = document.getElementById('preview-email-to');
+      const previewEmailSubject = document.getElementById('preview-email-subject');
+      const previewEmailBody = document.getElementById('preview-email-body');
 
-      // Save directly as a true .xlsx file!
-      const fileName = `Completed_Requests_${new Date().toISOString().split('T')[0]}.xlsx`;
-      XLSX.writeFile(workbook, fileName);
-    });
-  }
+      submitBtn.addEventListener('click', () => {
+        const activeReqId = document.getElementById('active-req-id').textContent;
 
-  // --- Details Modal ---
-  const closeDetailsBtn = document.getElementById('close-details-btn');
-  if (closeDetailsBtn) {
-    closeDetailsBtn.addEventListener('click', () => {
-      document.getElementById('details-modal').style.display = 'none';
-    });
-  }
-
-  if (closeFilterBtn && filterModal) {
-    closeFilterBtn.addEventListener('click', () => {
-      filterModal.style.display = 'none';
-    });
-  }
-
-  if (applyFilterBtn && filterModal) {
-    applyFilterBtn.addEventListener('click', () => {
-      filterCNumber = document.getElementById('filter-cnumber').value.trim();
-      filterPLName = document.getElementById('filter-plname').value.trim();
-      filterCustomer = document.getElementById('filter-customer').value.trim();
-      filterStatus = document.getElementById('filter-status') ? document.getElementById('filter-status').value.trim() : '';
-      renderTable();
-      filterModal.style.display = 'none';
-    });
-  }
-
-  // --- Calendar GUI Rendering Logic ---
-  let calCurrentDate = new Date();
-
-  function renderCalendar() {
-    const grid = document.getElementById('calendar-grid');
-    grid.innerHTML = '';
-
-    const year = calCurrentDate.getFullYear();
-    const month = calCurrentDate.getMonth();
-
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    document.getElementById('cal-month-title').textContent = `${monthNames[month]} ${year}`;
-
-    const firstDayIndex = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    let dayCounts = {};
-    requestsRows.forEach(row => {
-      const d = globalParseSheetDate(row.createdDate);
-      if (d && !isNaN(d)) {
-        if (d.getFullYear() === year && d.getMonth() === month) {
-          let day = d.getDate();
-          dayCounts[day] = (dayCounts[day] || 0) + 1;
+        if (!activeReqId || activeReqId === 'Request ID: -' || activeReqId === '-') {
+          alert("No active request selected!");
+          return;
         }
+
+        // Grab EXACT data for formatting
+        const currentId = activeReqId.replace('Request ID: ', '').trim();
+        const currentRef = document.getElementById('active-req-style').textContent || '-';
+        const currentCustomer = document.getElementById('active-req-customer').textContent || '-';
+        const rawPL = document.getElementById('config-pl-name').textContent || '';
+        const currentPL = rawPL.replace('PL: ', '').trim();
+        const appLink = window.location.origin + window.location.pathname;
+
+        // PRE-FILL Modal Inputs
+        previewEmailTo.value = "YTeeluck@tropicknits.com"; // Fixed default receiver
+        previewEmailSubject.value = `Techpack Uploaded: ${currentId}`;
+
+        // Format to match the desired layout exactly
+        const createdStamp = new Date().toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(',', '');
+        previewEmailBody.value = `Hi,\n\nTechpack has been uploaded.\n\nRef: ${currentRef}\nC_Number: ${currentId}\nCustomer: ${currentCustomer}\n\nApp link: ${appLink}\n\nRegards,\n\n${currentPL}`;
+
+        // Open Modal
+        emailModal.style.display = 'flex';
+      });
+
+      // Cancel Email Preview
+      if (cancelEmailBtn) {
+        cancelEmailBtn.addEventListener('click', () => {
+          emailModal.style.display = 'none';
+        });
       }
-    });
 
-    for (let x = 0; x < firstDayIndex; x++) {
-      let emptyCell = document.createElement('div');
-      emptyCell.style.background = '#f9fafb';
-      emptyCell.style.borderRadius = '6px';
-      grid.appendChild(emptyCell);
-    }
+      // Confirm Upload & Send Mail
+      if (confirmUploadBtn) {
+        confirmUploadBtn.addEventListener('click', async () => {
+          const activeReqId = document.getElementById('active-req-id').textContent;
+          const rawPL = document.getElementById('config-pl-name').textContent || '';
+          const currentPL = rawPL.replace('PL: ', '').trim();
 
-    for (let i = 1; i <= daysInMonth; i++) {
-      let dayCell = document.createElement('div');
-      dayCell.style.border = '1px solid #e5e7eb';
-      dayCell.style.borderRadius = '6px';
-      dayCell.style.padding = '8px';
-      dayCell.style.display = 'flex';
-      dayCell.style.flexDirection = 'column';
-      dayCell.style.backgroundColor = '#ffffff';
+          // UX Loading State
+          const originalText = confirmUploadBtn.textContent;
+          confirmUploadBtn.textContent = "Saving to Database...";
+          confirmUploadBtn.style.opacity = '0.7';
+          confirmUploadBtn.style.pointerEvents = 'none';
 
-      let dateNumber = document.createElement('strong');
-      dateNumber.style.color = '#374151';
-      dateNumber.textContent = i;
-      dayCell.appendChild(dateNumber);
+          // Now we gather the EXACT edited text from the preview modal to send to Google!
+          const eTo = previewEmailTo.value.trim();
+          const eSub = previewEmailSubject.value.trim();
+          const eBody = previewEmailBody.value;
 
-      if (dayCounts[i]) {
-        let countBadge = document.createElement('div');
-        countBadge.style.marginTop = 'auto';
-        countBadge.style.backgroundColor = 'var(--primary-color)';
-        countBadge.style.color = '#fff';
-        countBadge.style.padding = '4px 8px';
-        countBadge.style.borderRadius = '4px';
-        countBadge.style.fontSize = '12px';
-        countBadge.style.fontWeight = 'bold';
-        countBadge.style.textAlign = 'center';
-        countBadge.style.cursor = 'pointer';
-        countBadge.textContent = `${dayCounts[i]} Request${dayCounts[i] > 1 ? 's' : ''}`;
+          const payload = {
+            requestId: activeReqId.replace('Request ID: ', '').trim(),
+            processRoute: 'N/A',
+            specialInstructions: 'N/A',
+            pathFlow: 'N/A',
+            timestamp: new Date().toISOString(),
+            status: 'Awaiting Pattern',
+            PL_Uploaded_Date: browseDateCaptured || getFullDateTime(),
+            emailTo: eTo,
+            emailSubject: eSub,
+            emailBody: eBody,
+            plAlias: currentPL || "Techpack System",
+            currentRef: document.getElementById('active-req-style').textContent || '-',
+            currentCustomer: document.getElementById('active-req-customer').textContent || '-',
+            appLink: window.location.origin + window.location.pathname
+          };
 
-        // Highlight on hover
-        countBadge.addEventListener('mouseenter', () => countBadge.style.opacity = '0.8');
-        countBadge.addEventListener('mouseleave', () => countBadge.style.opacity = '1');
+          try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
 
-        countBadge.addEventListener('click', () => {
-          // Find all requests for this year, month, day
-          const dailyReqs = requestsRows.filter(r => {
-            const rd = globalParseSheetDate(r.createdDate);
-            return rd && !isNaN(rd) && rd.getFullYear() === year && rd.getMonth() === month && rd.getDate() === i;
+            alert("✅ Data saved and Email successfully fired from backend!");
+
+            // Close Modal & Reset Layout
+            emailModal.style.display = 'none';
+            document.getElementById('active-request-banner').style.display = 'none';
+            document.getElementById('upload-config-section').style.display = 'none';
+            browseDateCaptured = null;
+
+          } catch (error) {
+            console.error("Error saving data:", error);
+            alert("❌ Failed to save data. See console for details.");
+          } finally {
+            confirmUploadBtn.textContent = originalText;
+            confirmUploadBtn.style.opacity = '1';
+            confirmUploadBtn.style.pointerEvents = 'auto';
+          }
+        });
+      }
+
+      // --- Search Input ---
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchText = e.target.value.trim();
+          renderTable();
+        });
+      }
+
+      // --- Filter Modal ---
+      const openFilterBtn = document.getElementById('open-filter');
+      const closeFilterBtn = document.getElementById('close-filter-btn');
+      const filterModal = document.getElementById('filter-modal');
+      const applyFilterBtn = document.getElementById('apply-filter-btn');
+
+      if (openFilterBtn && filterModal) {
+        openFilterBtn.addEventListener('click', () => {
+          filterModal.style.display = 'flex';
+        });
+      }
+
+      const exportExcelBtn = document.getElementById('export-excel-btn');
+      if (exportExcelBtn) {
+        exportExcelBtn.addEventListener('click', () => {
+          // Ensure XLSX library is loaded
+          if (typeof XLSX === 'undefined') {
+            alert("Excel export library is loading. Please try again in a second.");
+            return;
+          }
+
+          const filteredForCompleted = requestsRows.filter(row => {
+            const s = (row.status || '').toUpperCase().trim();
+            return s === 'AWAITING PATTERN' || s === 'PM ASSIGN' || s.includes('COMPLETE');
           });
 
-          const modal = document.getElementById('calendar-day-modal');
-          const title = document.getElementById('calendar-day-title');
-          const content = document.getElementById('calendar-day-content');
+          // Map out data for Excel
+          const excelData = filteredForCompleted.map(row => ({
+            "Request ID": row.id || '',
+            "Style Name": row.style || '',
+            "Customer": row.customer || '',
+            "Assignee": row.assignee || '',
+            "Costing Ready Date": row.due || '',
+            "Status": row.status || '',
+            "Uploaded Date": row.PL_Uploaded_Date || '',
+            "Folder Link": row.folderLink || ''
+          }));
 
-          if (modal && title && content) {
-            title.textContent = `Requests on ${monthNames[month]} ${i}, ${year}`;
+          // Create a worksheet
+          const worksheet = XLSX.utils.json_to_sheet(excelData);
+          // Create a new workbook
+          const workbook = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(workbook, worksheet, "Completed Requests");
 
-            // Build a clean, styled list of Request IDs with a Details Button!
-            content.innerHTML = dailyReqs.map(r => `
+          // Save directly as a true .xlsx file!
+          const fileName = `Completed_Requests_${new Date().toISOString().split('T')[0]}.xlsx`;
+          XLSX.writeFile(workbook, fileName);
+        });
+      }
+
+      // --- Details Modal ---
+      const closeDetailsBtn = document.getElementById('close-details-btn');
+      if (closeDetailsBtn) {
+        closeDetailsBtn.addEventListener('click', () => {
+          document.getElementById('details-modal').style.display = 'none';
+        });
+      }
+
+      if (closeFilterBtn && filterModal) {
+        closeFilterBtn.addEventListener('click', () => {
+          filterModal.style.display = 'none';
+        });
+      }
+
+      if (applyFilterBtn && filterModal) {
+        applyFilterBtn.addEventListener('click', () => {
+          filterCNumber = document.getElementById('filter-cnumber').value.trim();
+          filterPLName = document.getElementById('filter-plname').value.trim();
+          filterCustomer = document.getElementById('filter-customer').value.trim();
+          filterStatus = document.getElementById('filter-status') ? document.getElementById('filter-status').value.trim() : '';
+          renderTable();
+          filterModal.style.display = 'none';
+        });
+      }
+
+      // --- Calendar GUI Rendering Logic ---
+      let calCurrentDate = new Date();
+
+      function renderCalendar() {
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+
+        const year = calCurrentDate.getFullYear();
+        const month = calCurrentDate.getMonth();
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        document.getElementById('cal-month-title').textContent = `${monthNames[month]} ${year}`;
+
+        const firstDayIndex = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        let dayCounts = {};
+        requestsRows.forEach(row => {
+          const d = globalParseSheetDate(row.createdDate);
+          if (d && !isNaN(d)) {
+            if (d.getFullYear() === year && d.getMonth() === month) {
+              let day = d.getDate();
+              dayCounts[day] = (dayCounts[day] || 0) + 1;
+            }
+          }
+        });
+
+        for (let x = 0; x < firstDayIndex; x++) {
+          let emptyCell = document.createElement('div');
+          emptyCell.style.background = '#f9fafb';
+          emptyCell.style.borderRadius = '6px';
+          grid.appendChild(emptyCell);
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+          let dayCell = document.createElement('div');
+          dayCell.style.border = '1px solid #e5e7eb';
+          dayCell.style.borderRadius = '6px';
+          dayCell.style.padding = '8px';
+          dayCell.style.display = 'flex';
+          dayCell.style.flexDirection = 'column';
+          dayCell.style.backgroundColor = '#ffffff';
+
+          let dateNumber = document.createElement('strong');
+          dateNumber.style.color = '#374151';
+          dateNumber.textContent = i;
+          dayCell.appendChild(dateNumber);
+
+          if (dayCounts[i]) {
+            let countBadge = document.createElement('div');
+            countBadge.style.marginTop = 'auto';
+            countBadge.style.backgroundColor = 'var(--primary-color)';
+            countBadge.style.color = '#fff';
+            countBadge.style.padding = '4px 8px';
+            countBadge.style.borderRadius = '4px';
+            countBadge.style.fontSize = '12px';
+            countBadge.style.fontWeight = 'bold';
+            countBadge.style.textAlign = 'center';
+            countBadge.style.cursor = 'pointer';
+            countBadge.textContent = `${dayCounts[i]} Request${dayCounts[i] > 1 ? 's' : ''}`;
+
+            // Highlight on hover
+            countBadge.addEventListener('mouseenter', () => countBadge.style.opacity = '0.8');
+            countBadge.addEventListener('mouseleave', () => countBadge.style.opacity = '1');
+
+            countBadge.addEventListener('click', () => {
+              // Find all requests for this year, month, day
+              const dailyReqs = requestsRows.filter(r => {
+                const rd = globalParseSheetDate(r.createdDate);
+                return rd && !isNaN(rd) && rd.getFullYear() === year && rd.getMonth() === month && rd.getDate() === i;
+              });
+
+              const modal = document.getElementById('calendar-day-modal');
+              const title = document.getElementById('calendar-day-title');
+              const content = document.getElementById('calendar-day-content');
+
+              if (modal && title && content) {
+                title.textContent = `Requests on ${monthNames[month]} ${i}, ${year}`;
+
+                // Build a clean, styled list of Request IDs with a Details Button!
+                content.innerHTML = dailyReqs.map(r => `
                     <div style="padding: 10px 8px; border-bottom: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
                        <div style="display:flex; flex-direction: column;">
                            <span style="font-weight: 500; color: var(--text-main);">${r.id || 'Unknown ID'}</span>
@@ -1753,121 +1754,121 @@ tbody tr:hover {
                     </div>
                  `).join('');
 
-            // Bind those new buttons to the Details pane!
-            const calDetailsBtns = content.querySelectorAll('.calendar-details-btn');
-            calDetailsBtns.forEach(btn => {
-              btn.addEventListener('click', (e) => {
-                const id = e.currentTarget.getAttribute('data-id');
-                const rowData = requestsRows.find(r => r.id === id);
+                // Bind those new buttons to the Details pane!
+                const calDetailsBtns = content.querySelectorAll('.calendar-details-btn');
+                calDetailsBtns.forEach(btn => {
+                  btn.addEventListener('click', (e) => {
+                    const id = e.currentTarget.getAttribute('data-id');
+                    const rowData = requestsRows.find(r => r.id === id);
 
-                if (rowData) {
-                  const detailsContent = document.getElementById('details-content');
+                    if (rowData) {
+                      const detailsContent = document.getElementById('details-content');
 
-                  // Exactly identical logic to your Completed Table Details!
-                  const displayFields = [
-                    { label: 'Request ID', value: rowData.id },
-                    { label: 'Customer', value: rowData.Customer || rowData.customer },
-                    { label: 'Cus Dept', value: rowData.Cus_Dept || rowData.cusDept },
-                    { label: 'TKL Season', value: rowData.TKL_Season || rowData.tklSeason },
-                    { label: 'Main Fabric', value: rowData.Main_Fabric || rowData.mainFabric },
-                    { label: 'Fabric Header', value: rowData.Fabric_Header || rowData.fabricHeader },
-                    { label: 'PL Name', value: rowData.PL_Name || rowData.assignee },
-                    { label: 'Status', value: rowData.Status || rowData.status },
-                    { label: 'Created', value: rowData.Created || rowData.createdDate },
-                    { label: 'Created By', value: rowData['Created By'] || rowData.createdBy },
-                    { label: 'Folder Path', value: rowData.Folder_Path || rowData.folderLink }
-                  ];
+                      // Exactly identical logic to your Completed Table Details!
+                      const displayFields = [
+                        { label: 'Request ID', value: rowData.id },
+                        { label: 'Customer', value: rowData.Customer || rowData.customer },
+                        { label: 'Cus Dept', value: rowData.Cus_Dept || rowData.cusDept },
+                        { label: 'TKL Season', value: rowData.TKL_Season || rowData.tklSeason },
+                        { label: 'Main Fabric', value: rowData.Main_Fabric || rowData.mainFabric },
+                        { label: 'Fabric Header', value: rowData.Fabric_Header || rowData.fabricHeader },
+                        { label: 'PL Name', value: rowData.PL_Name || rowData.assignee },
+                        { label: 'Status', value: rowData.Status || rowData.status },
+                        { label: 'Created', value: rowData.Created || rowData.createdDate },
+                        { label: 'Created By', value: rowData['Created By'] || rowData.createdBy },
+                        { label: 'Folder Path', value: rowData.Folder_Path || rowData.folderLink }
+                      ];
 
-                  detailsContent.innerHTML = displayFields.map(field => {
-                    let displayValue = field.value || '-';
-                    if (field.label === 'Folder Path' && displayValue !== '-') {
-                      displayValue = `<a href="${displayValue}" target="_blank" style="color: var(--primary-color); word-break: break-all; text-decoration: underline;">Open Folder</a>`;
-                    } else if (field.label === 'Status') {
-                      displayValue = `<span class="badge" style="background-color: var(--status-progress-bg); color: var(--status-progress-text); padding: 2px 8px; border-radius: 12px; font-weight: 600; font-size: 12px;">${displayValue}</span>`;
-                    }
+                      detailsContent.innerHTML = displayFields.map(field => {
+                        let displayValue = field.value || '-';
+                        if (field.label === 'Folder Path' && displayValue !== '-') {
+                          displayValue = `<a href="${displayValue}" target="_blank" style="color: var(--primary-color); word-break: break-all; text-decoration: underline;">Open Folder</a>`;
+                        } else if (field.label === 'Status') {
+                          displayValue = `<span class="badge" style="background-color: var(--status-progress-bg); color: var(--status-progress-text); padding: 2px 8px; border-radius: 12px; font-weight: 600; font-size: 12px;">${displayValue}</span>`;
+                        }
 
-                    return `
+                        return `
                               <div style="display:flex; justify-content:space-between; border-bottom:1px solid #f3f4f6; padding: 10px 4px; align-items: flex-start; gap: 16px;">
                                 <strong style="color: var(--text-muted); font-weight: 500; min-width: 120px;">${field.label}</strong>
                                 <span style="color: var(--text-main); font-weight: 500; text-align: right; word-break: break-word;">${displayValue}</span>
                               </div>
                             `;
-                  }).join('');
+                      }).join('');
 
-                  document.getElementById('details-modal').style.display = 'flex';
-                }
-              });
+                      document.getElementById('details-modal').style.display = 'flex';
+                    }
+                  });
+                });
+
+                modal.style.display = 'flex';
+              }
             });
 
-            modal.style.display = 'flex';
+            dayCell.appendChild(countBadge);
           }
+          grid.appendChild(dayCell);
+        }
+      }
+
+      // --- Calendar Modal Close Binding ---
+      const closeCalDayBtn = document.getElementById('close-calendar-day-btn');
+      if (closeCalDayBtn) {
+        closeCalDayBtn.addEventListener('click', () => {
+          document.getElementById('calendar-day-modal').style.display = 'none';
+        });
+      }
+
+      const prevBtn = document.getElementById('cal-prev-btn');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          calCurrentDate.setMonth(calCurrentDate.getMonth() - 1);
+          renderCalendar();
+        });
+      }
+
+      const nextBtn = document.getElementById('cal-next-btn');
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          calCurrentDate.setMonth(calCurrentDate.getMonth() + 1);
+          renderCalendar();
+        });
+      }
+
+      // --- Tab Navigation ---
+      const navUploads = document.getElementById('nav-uploads');
+      const navCompleted = document.getElementById('nav-completed');
+      const navCalendar = document.getElementById('nav-calendar');
+
+      if (navUploads && navCompleted && navCalendar) {
+        navUploads.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentTab = 'Uploads';
+          navUploads.classList.add('active');
+          navCompleted.classList.remove('active');
+          navCalendar.classList.remove('active');
+          renderTable();
         });
 
-        dayCell.appendChild(countBadge);
+        navCompleted.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentTab = 'Completed';
+          navCompleted.classList.add('active');
+          navUploads.classList.remove('active');
+          navCalendar.classList.remove('active');
+          renderTable();
+        });
+
+        navCalendar.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentTab = 'Calendar';
+          navCalendar.classList.add('active');
+          navUploads.classList.remove('active');
+          navCompleted.classList.remove('active');
+          renderTable();
+        });
       }
-      grid.appendChild(dayCell);
-    }
-  }
 
-  // --- Calendar Modal Close Binding ---
-  const closeCalDayBtn = document.getElementById('close-calendar-day-btn');
-  if (closeCalDayBtn) {
-    closeCalDayBtn.addEventListener('click', () => {
-      document.getElementById('calendar-day-modal').style.display = 'none';
     });
-  }
-
-  const prevBtn = document.getElementById('cal-prev-btn');
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      calCurrentDate.setMonth(calCurrentDate.getMonth() - 1);
-      renderCalendar();
-    });
-  }
-
-  const nextBtn = document.getElementById('cal-next-btn');
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      calCurrentDate.setMonth(calCurrentDate.getMonth() + 1);
-      renderCalendar();
-    });
-  }
-
-  // --- Tab Navigation ---
-  const navUploads = document.getElementById('nav-uploads');
-  const navCompleted = document.getElementById('nav-completed');
-  const navCalendar = document.getElementById('nav-calendar');
-
-  if (navUploads && navCompleted && navCalendar) {
-    navUploads.addEventListener('click', (e) => {
-      e.preventDefault();
-      currentTab = 'Uploads';
-      navUploads.classList.add('active');
-      navCompleted.classList.remove('active');
-      navCalendar.classList.remove('active');
-      renderTable();
-    });
-
-    navCompleted.addEventListener('click', (e) => {
-      e.preventDefault();
-      currentTab = 'Completed';
-      navCompleted.classList.add('active');
-      navUploads.classList.remove('active');
-      navCalendar.classList.remove('active');
-      renderTable();
-    });
-
-    navCalendar.addEventListener('click', (e) => {
-      e.preventDefault();
-      currentTab = 'Calendar';
-      navCalendar.classList.add('active');
-      navUploads.classList.remove('active');
-      navCompleted.classList.remove('active');
-      renderTable();
-    });
-  }
-
-});
 
   </script>
 </body>
