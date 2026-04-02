@@ -1907,7 +1907,9 @@ tbody tr:hover {
 
     let dayCounts = {};
     requestsRows.forEach(row => {
-      const d = globalParseSheetDate(row.createdDate);
+      const st = String(row.status || '').toUpperCase().replace(/\s+/g, ' ').trim();
+      if (st !== 'AWAITING PATTERN') return;
+      const d = globalParseSheetDate(row.PL_Uploaded_Date);
       if (d && !isNaN(d)) {
         if (d.getFullYear() === year && d.getMonth() === month) {
           let day = d.getDate();
@@ -1957,7 +1959,9 @@ tbody tr:hover {
         countBadge.addEventListener('click', () => {
           // Find all requests for this year, month, day
           const dailyReqs = requestsRows.filter(r => {
-            const rd = globalParseSheetDate(r.createdDate);
+            const st = String(r.status || '').toUpperCase().replace(/\s+/g, ' ').trim();
+            if (st !== 'AWAITING PATTERN') return false;
+            const rd = globalParseSheetDate(r.PL_Uploaded_Date);
             return rd && !isNaN(rd) && rd.getFullYear() === year && rd.getMonth() === month && rd.getDate() === i;
           });
 
