@@ -1841,6 +1841,7 @@ tbody tr:hover {
             "Style Name": row.style || row.Style || '',
             "Customer": row.customer || row.Customer || '',
             "Assigned PL": row.assignee || row.PL_Name || '',
+            "Remarks": row.remarks || row.Remarks || '',
             "Costing Ready Date": row.due || '',
             "Status": row.status || row.Status || '',
             "PL Overdue (hrs)": plOverdueHrs,
@@ -2056,6 +2057,7 @@ tbody tr:hover {
       { label: 'Customer', value: rowData.Customer || rowData.customer },
       { label: 'Style', value: rowData.Style || rowData.style },
       { label: 'PL Name', value: rowData.PL_Name || rowData.assignee },
+      { label: 'Remarks', value: rowData.remarks || rowData.Remarks || '' },
       { label: 'Created Date', value: rowData.createdDate || rowData.Created },
       { label: 'Folder Path', value: rowData.Folder_Path || rowData.folderLink || '-' },
       { label: 'Status', value: rowData.Status || rowData.status }
