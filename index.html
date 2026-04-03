@@ -1377,6 +1377,19 @@ tbody tr:hover {
 
     tableBody.innerHTML = '';
 
+    function formatToDDMMYYYY(dateStr) {
+      if (!dateStr || dateStr === '-') return '-';
+      if (typeof dateStr === 'string' && dateStr.includes('/')) {
+        return dateStr.split(' ')[0];
+      }
+      const d = new Date(dateStr);
+      if (isNaN(d)) return dateStr;
+      const day = String(d.getDate()).padStart(2, '0');
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const year = d.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
     // Update the section title so the user knows which tab they are viewing
     const tableHeaderTitle = document.querySelector('.table-header h2');
     if (tableHeaderTitle) {
@@ -1499,7 +1512,7 @@ tbody tr:hover {
             ${row.assignee || 'Unassigned'}
           </div>
         </td>
-        <td>${row.due || '-'}</td>
+        <td>${formatToDDMMYYYY(row.due)}</td>
         <td>
           <span class="status-badge ${row.statusClass || 'status-pending'}">
             ${row.status || 'PENDING'}
@@ -2058,7 +2071,7 @@ tbody tr:hover {
       { label: 'Style', value: rowData.Style || rowData.style },
       { label: 'PL Name', value: rowData.PL_Name || rowData.assignee },
       { label: 'Remarks', value: rowData.remarks || rowData.Remarks || '' },
-      { label: 'Created Date', value: rowData.createdDate || rowData.Created },
+      { label: 'Created Date', value: formatToDDMMYYYY(rowData.createdDate || rowData.Created) },
       { label: 'Folder Path', value: rowData.Folder_Path || rowData.folderLink || '-' },
       { label: 'Status', value: rowData.Status || rowData.status }
     ];
